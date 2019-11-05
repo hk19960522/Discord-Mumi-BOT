@@ -4,11 +4,20 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 
-
 from dotenv import load_dotenv
 
-load_dotenv()
-token = os.getenv('DISCORD_TOKEN')
+def TokenReader():
+    f = open("Config.txt", "r")
+    token = "NONE"
+    for context in f:
+        if (context.startswith("DISCORD_TOKEN=")):
+            token = context[14:]
+            break
+    return token
+
+#load_dotenv()
+#token = os.getenv('DISCORD_TOKEN')
+token = TokenReader()
 
 bot = Bot(command_prefix='!')
 
@@ -22,3 +31,7 @@ async def TagAll(ctx, context):
     await ctx.send(f'{memberRole}, {context}')
 
 bot.run(token)
+
+
+
+
