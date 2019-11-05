@@ -1,0 +1,1 @@
+worker: python EX_BOT.py
